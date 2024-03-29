@@ -22,6 +22,6 @@ export class HomeComponent implements OnInit {
       this.countries = data;
     });
 
-    console.log(this.countries);
+    // console.log(this.countries);
   }
 }
