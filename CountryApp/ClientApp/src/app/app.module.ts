@@ -4,11 +4,10 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { CountryService } from './service/countries.service';
 import { CountryServiceMock } from './service/country.service.mock';
-import { CountryGridComponent } from 'src/Components/country-grid/country-grid.component';
+import { CountryGridComponent } from 'src/app/components/country-grid/country-grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
@@ -16,7 +15,6 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 @NgModule({
   declarations: [
     AppComponent,
-    NavMenuComponent,
     HomeComponent,
     CountryGridComponent,
     SearchBarComponent,
