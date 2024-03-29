@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Country } from 'src/Models/country.model';
+import { Country, Flags } from 'src/Models/country.model';
 import { CountryServiceMock } from 'src/app/service/country.service.mock';
 
 @Component({
@@ -11,14 +11,15 @@ import { CountryServiceMock } from 'src/app/service/country.service.mock';
 export class CountryGridComponent implements OnInit{
   countries: Country[] = [];
   names: string[] = [];
+  flagsPng: string[] = [];
 
   constructor(private countryService: CountryServiceMock) {}
 
   ngOnInit(): void {
     this.countryService.getAllCountries().subscribe((data) => {
       this.countries = data;
-
       this.names = data.map(x => x.name.common)
+      this.flagsPng = data.map(x => x.flags.png)
     });
     
   }

@@ -16,7 +16,7 @@ export interface Region {
   code: string;
 }
 
-interface Flags {
+export interface Flags {
   png: string;
   svg: string;
   alt: string;

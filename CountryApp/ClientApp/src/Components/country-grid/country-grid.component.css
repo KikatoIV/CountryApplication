@@ -1,12 +1,32 @@
+mat-grid-list {
+    grid-auto-rows: auto; /* Set a fixed row height */
+    column-count: 5; /* Specify the number of columns */
+    gap: 10px; /* Add some spacing between grid tiles */
+    height: auto;
+    width: auto;
+    /* Add other grid styles */
+}
+
 mat-grid-tile {
     background: lightblue;
+    height: 100;
+    width: 200;
+    /* Add other tile styles */
+}
 
-}
-mat-grid-tile:hover{
+mat-grid-tile:hover {
     background: rgb(106, 192, 221);
+    /* Add hover styles */
 }
- 
-mat-grid-list {
-    grid-auto-rows: 200px;
-    column-count: 5;
+
+img {
+
+    object-fit: cover;
+    border: 1px solid #ccc; /* Add a border for visual separation */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow effect */
+    transition: transform 0.2s ease; /* Smooth transition on hover */
+}
+
+img:hover {
+    transform: scale(1.05);
 }

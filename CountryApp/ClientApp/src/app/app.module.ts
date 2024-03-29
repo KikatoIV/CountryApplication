@@ -11,6 +11,7 @@ import { CountryServiceMock } from './service/country.service.mock';
 import { CountryGridComponent } from 'src/Components/country-grid/country-grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
     NavMenuComponent,
     HomeComponent,
     CountryGridComponent,
+    SearchBarComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
