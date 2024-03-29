@@ -20,7 +20,6 @@ namespace CountryApp.Controllers
         }
 
         [HttpGet]
-        [Route("countries")]
         public async Task<IActionResult> GetAllCountriesAsync()
         {
             if (!_memoryCache.TryGetValue("AllCountries", out List<CountryDto> cachedCountries))
@@ -39,7 +38,6 @@ namespace CountryApp.Controllers
 
             return Ok(cachedCountries);
         }
-
 
 
         private object? GetMockCountries()

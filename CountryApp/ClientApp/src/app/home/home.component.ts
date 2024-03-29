@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../../Models/country.model';
 import { CountryServiceMock } from '../service/country.service.mock';
-//import { CountryService } from '../service/countries.service';
-//import { MatGridListModule } from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-home',

@@ -8,7 +8,7 @@ import { Country } from '../../Models/country.model';
 })
 
 export class CountryService {
-  private apiUrl = 'http://localhost:21025/api/countries';
+  private apiUrl = 'https://localhost:7093/api/countries';
 
   constructor(private http: HttpClient) { }
 
