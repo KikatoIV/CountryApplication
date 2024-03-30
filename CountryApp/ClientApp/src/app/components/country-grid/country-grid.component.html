@@ -1,7 +1,6 @@
 <!-- country-grid.component.html -->
-<mat-grid-list cols="3">
+<mat-grid-list cols="4" height="20">
     <mat-grid-tile *ngFor="let country of countries" (click)="handleTileClick(country.name)">
        <img [src]=country.flag>
     </mat-grid-tile>
 </mat-grid-list>
-  

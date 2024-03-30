@@ -9,13 +9,9 @@ import { CountryServiceMock } from '../service/country.service.mock';
 export class HomeComponent implements OnInit {
   countries: Country[] = [];
 
-  constructor(private countryService: CountryServiceMock) { }
+  constructor(private countryService: CountryServiceMock) {}
 
   ngOnInit(): void {
-    //this.countryService.getAllCountries().subscribe((data) => {
-    //  this.countries = data;
-    //});
-
     this.countryService.getAllCountries().subscribe((data) => {
       this.countries = data;
     });

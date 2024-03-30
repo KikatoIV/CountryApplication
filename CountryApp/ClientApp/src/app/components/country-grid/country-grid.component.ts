@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from 'src/Models/country.model';
 import { CountryService } from 'src/app/service/countries.service';
-import { CountryServiceMock } from 'src/app/service/country.service.mock';
 
 @Component({
   selector: 'app-country-grid',
@@ -14,18 +13,14 @@ export class CountryGridComponent implements OnInit{
   names: string[] = [];
   flagsPng: string[] = [];
 
-  constructor(private countryService: CountryServiceMock, private countrysevice2: CountryService) {}
+  constructor(private countrySevice: CountryService) {}
 
   ngOnInit(): void {
-    this.countryService.getAllCountries().subscribe((data) => {
+    this.countrySevice.getAllCountries().subscribe((data) => {
       this.countries = data;
       this.names = data.map(x => x.name)
       this.flagsPng = data.map(x => x.flag)
     });
-    this.countrysevice2.getAllCountries().subscribe((x) => {
-      console.log(x)
-
-    })
   }
   
   handleTileClick(countryName: string): void {

@@ -10,7 +10,12 @@ import { CountryServiceMock } from './service/country.service.mock';
 import { CountryGridComponent } from 'src/app/components/country-grid/country-grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatIconModule } from '@angular/material/icon';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { SearchBarComponent } from './components/search-bar/search-bar.component';
+import { InfoPanelComponent } from './components/info-panel/info-panel.component';
+import { MatInputModule } from '@angular/material/input';
+
 
 @NgModule({
   declarations: [
@@ -18,12 +23,17 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
     HomeComponent,
     CountryGridComponent,
     SearchBarComponent,
+    InfoPanelComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    MatIconModule,
+    BrowserAnimationsModule,
     MatGridListModule,
+    MatFormFieldModule,
+    MatInputModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
     ]),
