@@ -1,9 +1,17 @@
+using CountryApp.Services;
+using Microsoft.Extensions.Caching.Memory;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews();
-builder.Services.AddMemoryCache();
+builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
-
+builder.Services.AddMemoryCache();
+builder.Services.AddHttpClient();
+builder.Services.AddMvc();
+builder.Services.AddSingleton<CountryService>();
+//builder.Services.AddScoped<IHttpClientFactory>();
+//builder.Services.AddScoped<IMemoryCache>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())
@@ -12,7 +20,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 

@@ -19,7 +19,6 @@ namespace CountryAppTests
         {
             _mockHttpClientFactory = new Mock<IHttpClientFactory>();
             _mockMemoryCache = new Mock<IMemoryCache>();
-            _controller = new CountriesController(_mockHttpClientFactory.Object, _mockMemoryCache.Object);
         }
     }
 

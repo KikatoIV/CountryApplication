@@ -1,4 +1,5 @@
 ﻿using CountryApp.Dtos;
+using CountryApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
 using Newtonsoft.Json;
@@ -10,39 +11,29 @@ namespace CountryApp.Controllers
     [Route("api/[controller]")]
     public class CountriesController : ControllerBase
     {
-        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly CountryService _countryService; // Inject the service
         private readonly IMemoryCache _memoryCache;
 
-        public CountriesController(IHttpClientFactory httpClientFactory, IMemoryCache memoryCache)
+        public CountriesController(CountryService countryService, IMemoryCache memoryCache)
         {
-            _httpClientFactory = httpClientFactory;
-            _memoryCache = memoryCache;
+            _countryService = countryService ?? throw new ArgumentNullException(nameof(countryService));
+            _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllCountriesAsync()
         {
+            System.Console.WriteLine("Works");
             if (!_memoryCache.TryGetValue("AllCountries", out List<CountryDto> cachedCountries))
             {
-                var httpClient = _httpClientFactory.CreateClient();
-                var response = await httpClient.GetStringAsync("https://restcountries.com/v3.1/all");
+                // Use the service to fetch countries
+                cachedCountries = await _countryService.GetAllCountriesAsync();
 
-                //var countries = JsonSerializer.Deserialize<IEnumerable<CountryDto>>(new StreamReader(response).ReadToEnd());
-                //var countries = new JsonSerializer().Deserialize<CountryDto>(response);
-                var countries = JsonConvert.DeserializeObject<List<CountryDto>>(response);
-                //var countries = await response.Content.ReadAsAsync<List<CountryDto>>();
-
-                _memoryCache.Set("AllCountries", countries, TimeSpan.FromHours(1));
-                cachedCountries = (List<CountryDto>)GetMockCountries();
+                // Cache the data for 1 hour
+                _memoryCache.Set("AllCountries", cachedCountries, TimeSpan.FromHours(1));
             }
 
             return Ok(cachedCountries);
-        }
-
-
-        private object? GetMockCountries()
-        {
-            throw new NotImplementedException();
         }
 
         //    [HttpGet("{countryCode}")]
