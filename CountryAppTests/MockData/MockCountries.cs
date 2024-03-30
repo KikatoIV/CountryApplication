@@ -1,34 +1,33 @@
 ﻿using CountryApp.Dtos;
-using System.Collections.Generic;
 
-namespace CountryAppTests.MockData
+public class MockData
 {
-    internal class MockCountries
+    public static List<CountryDto> GetMockCountries()
     {
-        public static List<CountryDto> GetMockCountries()
+        var countries = new List<CountryDto>
         {
-            return new List<CountryDto>
+            new CountryDto
             {
-                new CountryDto
-                {
-                    Name = "United States",
-                    Capital = "Washington, D.C.",
-                    Currencies = new List<string> { "USD" },
-                    Population = 331002651,
-                    IsoCode = "USA",
-                    Languages = new List<string> { "English" }
-                },
-                new CountryDto
-                {
-                    Name = "United Kingdom",
-                    Capital = "London",
-                    Currencies = new List<string> { "GBP" },
-                    Population = 67886011,
-                    IsoCode = "GBR",
-                    Languages = new List<string> { "English" }
-                }
-                // Add more countries as needed
-            };
-        }
+                Name = "Country1",
+                Capital = new string[] { "Capital1", "Capital2" },
+                Currencies = null,
+                Population = 1000000,
+                IsoCode = "ISO1",
+                Languages = new List<string> { "English", "Spanish" }
+            },
+            new CountryDto
+            {
+                Name = "Country2",
+                Capital = new string[] { "Capital3" },
+                Currencies = null,
+                Population = 2000000,
+                IsoCode = "ISO2",
+                Languages = new List<string> { "French", "German" }
+            }
+            // Add more countries as needed
+        };
+
+        return countries;
     }
 }
+

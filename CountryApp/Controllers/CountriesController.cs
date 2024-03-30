@@ -23,7 +23,6 @@ namespace CountryApp.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAllCountriesAsync()
         {
-            System.Console.WriteLine("Works");
             if (!_memoryCache.TryGetValue("AllCountries", out List<CountryDto> cachedCountries))
             {
                 // Use the service to fetch countries
