@@ -13,43 +13,39 @@ namespace CountryApp.Controllers
     {
         private readonly CountryService _countryService; // Inject the service
         private readonly IMemoryCache _memoryCache;
+        private readonly ILogger<CountryService> _logger;
 
-        public CountriesController(CountryService countryService, IMemoryCache memoryCache)
+        public CountriesController(CountryService countryService, IMemoryCache memoryCache, ILogger<CountryService> logger)
         {
             _countryService = countryService ?? throw new ArgumentNullException(nameof(countryService));
             _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAllCountriesAsync()
         {
-            if (!_memoryCache.TryGetValue("AllCountries", out List<CountryDto> cachedCountries))
+            try
             {
-                // Use the service to fetch countries
-                cachedCountries = await _countryService.GetAllCountriesAsync();
-
-                // Cache the data for 1 hour
-                _memoryCache.Set("AllCountries", cachedCountries, TimeSpan.FromHours(1));
+                var cachedCountries = await GetCachedCountriesAsync();
+                return Ok(cachedCountries);
             }
-
-            return Ok(cachedCountries);
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error fetching countries from API.");
+                return StatusCode(500, "An error occurred while fetching countries.");
+            }
         }
 
-        //    [HttpGet("{countryCode}")]
-        //    public async Task<IActionResult> GetCountryDetailsAsync(string countryCode)
-        //    {
-        //        // Check if data is already cached
-        //        if (!_memoryCache.TryGetValue(countryCode, out CountryDto cachedCountry))
-        //        {
-        //            // Fetch data for the specific country
-        //            // (similar to the above approach)
-
-        //            // Cache the data
-        //            _memoryCache.Set(countryCode, countryDetails, TimeSpan.FromHours(1));
-        //            cachedCountry = countryDetails;
-        //        }
-
-        //        return Ok(cachedCountry);
-        //    }
+        private async Task<List<CountryDto>> GetCachedCountriesAsync()
+        {
+            if (_memoryCache.TryGetValue("AllCountries", out List<CountryDto> cachedCountries))
+            {
+                return cachedCountries;
+            }
+            var countriesFromApi = await _countryService.GetAllCountriesAsync();
+            _memoryCache.Set("AllCountries", countriesFromApi, TimeSpan.FromHours(1));
+            return countriesFromApi;
+        }
     }
 }

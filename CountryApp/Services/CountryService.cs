@@ -10,7 +10,7 @@ namespace CountryApp.Services
         private readonly IMemoryCache _memoryCache;
         private readonly ILogger<CountryService> _logger;
 
-       0 public CountryService(IHttpClientFactory httpClientFactory, IMemoryCache memoryCache, ILogger<CountryService> logger)
+        public CountryService(IHttpClientFactory httpClientFactory, IMemoryCache memoryCache, ILogger<CountryService> logger)
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
