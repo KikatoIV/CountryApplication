@@ -2,8 +2,6 @@
 using CountryApp.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Caching.Memory;
-using Newtonsoft.Json;
-using System.Reflection;
 
 namespace CountryApp.Controllers
 {
@@ -13,13 +11,11 @@ namespace CountryApp.Controllers
     {
         private readonly CountryService _countryService; // Inject the service
         private readonly IMemoryCache _memoryCache;
-        private readonly ILogger<CountryService> _logger;
 
-        public CountriesController(CountryService countryService, IMemoryCache memoryCache, ILogger<CountryService> logger)
+        public CountriesController(CountryService countryService, IMemoryCache memoryCache)
         {
             _countryService = countryService ?? throw new ArgumentNullException(nameof(countryService));
             _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
-            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
         [HttpGet]
@@ -30,9 +26,8 @@ namespace CountryApp.Controllers
                 var cachedCountries = await GetCachedCountriesAsync();
                 return Ok(cachedCountries);
             }
-            catch (Exception ex)
+            catch
             {
-                _logger.LogError(ex, "Error fetching countries from API.");
                 return StatusCode(500, "An error occurred while fetching countries.");
             }
         }
