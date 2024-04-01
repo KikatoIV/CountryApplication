@@ -13,6 +13,7 @@ export class HomeComponent implements OnInit {
   countrtyCount: number = 0;
   countrySubscription: Subscription | undefined;
   isInfoPanelOpen: boolean = false;
+  selectedCountry: Country | undefined;
 
   constructor(private countryService: CountryService) {}
 
@@ -38,12 +39,12 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  handleTitleClick(titleClick: string) {
-    console.log('title click', titleClick);
+  handleCountryClick(countryClick: Country) {
+    this.selectedCountry = countryClick;
     this.isInfoPanelOpen = true;
   }
-  
-  closeInfoPanel() {
+  handlePanelClosed() {
+    // Perform any actions needed when the info panel is closed
     this.isInfoPanelOpen = false;
   }
 

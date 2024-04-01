@@ -10,7 +10,7 @@ namespace CountryApp.Services
         private readonly IMemoryCache _memoryCache;
         private readonly ILogger<CountryService> _logger;
 
-        public CountryService(IHttpClientFactory httpClientFactory, IMemoryCache memoryCache, ILogger<CountryService> logger)
+       0 public CountryService(IHttpClientFactory httpClientFactory, IMemoryCache memoryCache, ILogger<CountryService> logger)
         {
             _httpClientFactory = httpClientFactory ?? throw new ArgumentNullException(nameof(httpClientFactory));
             _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
@@ -31,19 +31,7 @@ namespace CountryApp.Services
                     var countriesData = JsonSerializer.Deserialize<IEnumerable<Root>>(responseContent);
                     foreach (var countryData in countriesData)
                     {
-                        var country = new CountryDto
-                        {
-                            Name = countryData.name.common,
-                            Capital = countryData.capital,
-                            Population = countryData.population,
-                            IsoCode = countryData.cca3,
-                            flag = countryData.flags.png,
-                            Languages = countryData.languages.Values.ToArray(),
-                            Currencies = countryData.currencies
-                                .SelectMany(pair => pair.Value.Where(innerPair => innerPair.Key == "name").Select(innerPair => innerPair.Value))
-                                .ToArray()
-                        };
-
+                        var country = MapToCountryDto(countryData);
                         cachedCountries.Add(country);
                     }
 
@@ -54,8 +42,22 @@ namespace CountryApp.Services
                     _logger.LogError(ex, "Error fetching countries from API.");
                 }
             }
-            
+
             return cachedCountries;
+        }
+
+        private CountryDto MapToCountryDto(Root countryData)
+        {
+            return new CountryDto
+            {
+                Name = countryData.name.common,
+                Capital = countryData.capital,
+                Population = countryData.population,
+                IsoCode = countryData.cca3,
+                flag = countryData.flags.png,
+                Languages = countryData.languages.Values.ToArray(),
+                Currencies = countryData.currencies.SelectMany(pair => pair.Value.Where(innerPair => innerPair.Key == "name").Select(innerPair => innerPair.Value)).ToArray()
+            };
         }
     }
 }

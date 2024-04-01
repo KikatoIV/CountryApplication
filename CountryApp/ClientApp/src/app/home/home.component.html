@@ -1,17 +1,20 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<header>
   <title>My Home Page</title>
-</header>
-<html lang="en">
-<body>
+</head>
+<body class="wider-content">
   <app-search-bar (searchEmitter)="handleSearch($event)"></app-search-bar>
   <main>
-    <app-country-grid [countries]="countries" (clickEmitter)="handleTitleClick($event)"></app-country-grid>
+    <app-country-grid [countries]="countries" (clickEmitter)="handleCountryClick($event)"></app-country-grid>
   </main>
+  
+  <div>
+    <app-info-panel [isPanelVisible]="isInfoPanelOpen" [countryInformation]="selectedCountry" (panelClosed)="handlePanelClosed()"></app-info-panel>
+  </div>
+  
   <footer>
     <p>© 2024 My Website. All rights reserved.</p>
   </footer>

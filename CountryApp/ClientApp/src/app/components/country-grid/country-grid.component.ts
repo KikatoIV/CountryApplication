@@ -10,18 +10,16 @@ export class CountryGridComponent implements OnInit{
   @Input() countries: Country[] = [];
   names: string[] = [];
   flagsPng: string[] = [];
-  @Output() clickEmitter: EventEmitter<string> = new EventEmitter<string>();
-
+  @Output() clickEmitter: EventEmitter<Country> = new EventEmitter<Country>();
 
   constructor() {}
 
   ngOnInit(): void {
-    this.names = this.countries.map(x => x.name);
     this.flagsPng = this.countries.map(x => x.flag);
   }
   
-  handleTileClick(countryName: string): void {
-    this.clickEmitter.emit(countryName)
+  handleTileClick(country: Country): void {
+    this.clickEmitter.emit(country)
   }
 
 }

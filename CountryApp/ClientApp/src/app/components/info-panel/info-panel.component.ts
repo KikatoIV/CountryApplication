@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { animate, state, style, transition, trigger } from '@angular/animations';
+import { Country } from 'src/Models/country.model';
 
 @Component({
   selector: 'app-info-panel',
@@ -15,9 +16,14 @@ import { animate, state, style, transition, trigger } from '@angular/animations'
 })
 
 export class InfoPanelComponent {
-  isPanelVisible = true;
+  @Input() isPanelVisible = false;
+  @Input() countryInformation: Country | undefined;
+  @Output() panelClosed = new EventEmitter<void>();
 
   togglePanel() {
     this.isPanelVisible = !this.isPanelVisible;
+    if (!this.isPanelVisible) {
+      this.panelClosed.emit(); // Emit event when panel is closed
+    }
   }
 }

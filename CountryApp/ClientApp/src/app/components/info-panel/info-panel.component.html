@@ -1,5 +1,26 @@
-<div [@fadeInOut]="isPanelVisible ? 'visible' : 'hidden'">
-    <h2>Important Information</h2>
-    <p>Your information goes here.</p>
+<div class="info-panel-container" *ngIf="isPanelVisible" [@fadeInOut]>
+  <div class="info-panel">
+    <h2>{{ countryInformation?.name }}</h2>
+    <div class="country-info">
+      <div class="image-and-details">
+        <img src="{{ countryInformation?.flag }}">
+        <ul>
+          <li><strong>Population:</strong> {{ countryInformation?.population }}</li>
+          <li><strong>Capital:</strong> {{ countryInformation?.capital }}</li>
+          <li><strong>Iso Code:</strong> {{ countryInformation?.isoCode }}</li>
+          <li><strong>Currencies:</strong>
+            <ul>
+              <li *ngFor="let currency of countryInformation?.currencies">{{ currency }}</li>
+            </ul>
+          </li>
+          <li><strong>Languages:</strong>
+            <ul>
+              <li *ngFor="let language of countryInformation?.languages">{{ language }}</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <button (click)="togglePanel()">Close</button>
   </div>
-  <button (click)="togglePanel()">Toggle Panel</button>
+</div>

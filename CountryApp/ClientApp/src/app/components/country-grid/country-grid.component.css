@@ -1,33 +1,36 @@
-mat-grid-list {
-    grid-auto-rows: minmax(50px, auto);
-    grid-column-gap: initial
-
-    /* Add other grid styles */
+.mat-grid-tile {
+  width: 200px;
+  height: 150px;
+  border: 1px solid #ccc;
+  margin: 5px;
+  overflow: hidden;
 }
 
-.title-tem > ::ng-deep .mat-figure {
-  align-items: flex-start;
-  justify-content: flex-start;
+.mat-grid-tile img {
+  width: 390px;
+  height: 250px;
+  object-fit: contain; /* Ensure the image fills the tile without distortion */
 }
 
-mat-grid-tile {
-  background: lightblue;
-  height: 60px;
-  width: 110px;
-  padding-top: calc(20.3333% - 0.666667px);
+.mat-grid-list {
+  margin: 20px;
+  box-sizing: content-box;
 }
 
-mat-grid-tile:hover {
-    background: rgb(106, 192, 221);
+.grid-container {
+  max-height: 700px;
+  width: auto;
+   /* Set the maximum height of the container */
+  overflow-y: auto; /* Enable vertical scrollbar when content exceeds container height */
 }
 
 img {
-  object-fit: cover;
-  border: 1px solid #ccc;
+  object-fit: contain;
+  border: 3px solid #ccc;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
-  height: 220px;
-  width: 360px;
+  width: 220px;
+  width: 400px;
 }
 
 img:hover {
