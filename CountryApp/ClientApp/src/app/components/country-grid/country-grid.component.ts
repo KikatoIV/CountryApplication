@@ -1,7 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter,  Input } from '@angular/core';
 import { Country } from 'src/Models/country.model';
-import { CountryService } from 'src/app/service/countries.service';
-
 @Component({
   selector: 'app-country-grid',
   templateUrl: './country-grid.component.html',
@@ -9,22 +7,21 @@ import { CountryService } from 'src/app/service/countries.service';
 })
 
 export class CountryGridComponent implements OnInit{
-  countries: Country[] = [];
+  @Input() countries: Country[] = [];
   names: string[] = [];
   flagsPng: string[] = [];
+  @Output() clickEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-  constructor(private countrySevice: CountryService) {}
+
+  constructor() {}
 
   ngOnInit(): void {
-    this.countrySevice.getAllCountries().subscribe((data) => {
-      this.countries = data;
-      this.names = data.map(x => x.name)
-      this.flagsPng = data.map(x => x.flag)
-    });
+    this.names = this.countries.map(x => x.name);
+    this.flagsPng = this.countries.map(x => x.flag);
   }
   
   handleTileClick(countryName: string): void {
-    console.log('Clicked on:', countryName);
+    this.clickEmitter.emit(countryName)
   }
 
 }

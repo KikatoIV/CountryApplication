@@ -8,9 +8,9 @@
 </header>
 <html lang="en">
 <body>
-  <app-search-bar></app-search-bar>
+  <app-search-bar (searchEmitter)="handleSearch($event)"></app-search-bar>
   <main>
-    <app-country-grid></app-country-grid>
+    <app-country-grid [countries]="countries" (clickEmitter)="handleTitleClick($event)"></app-country-grid>
   </main>
   <footer>
     <p>© 2024 My Website. All rights reserved.</p>

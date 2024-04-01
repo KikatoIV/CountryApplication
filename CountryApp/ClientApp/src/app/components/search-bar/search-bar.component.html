@@ -1,9 +1,11 @@
-<mat-form-field class="search-bar">
+<div>
+    <mat-form-field class="search-bar">
     <input
         matInput
         placeholder="Search"
         [(ngModel)]="searchTerm"
-        (keyup.enter)="performSearch()"
+        (ngModelChange)="onSearchChange()"
     />
-    <button mat-button (click)="performSearch()">Search</button>
-</mat-form-field>
+    <button mat-button (click)="clearSearch()">Clear Search</button>
+    </mat-form-field>
+</div>

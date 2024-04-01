@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component,  Output, EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-search-bar',
@@ -8,8 +10,14 @@ import { Component } from '@angular/core';
 
 export class SearchBarComponent {
   searchTerm: string = '';
+  searchSubject: Subject<string> = new Subject<string>();
+  @Output() searchEmitter: EventEmitter<string> = new EventEmitter<string>();
 
-  performSearch() {
-      console.log('Performing search for:', this.searchTerm);
+  clearSearch(){
+    this.searchEmitter.emit('');
   }
+
+  onSearchChange(): void {
+    this.searchEmitter.emit(this.searchTerm);
+}
 }

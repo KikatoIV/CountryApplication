@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../../Models/country.model';
-import { CountryServiceMock } from '../service/country.service.mock';
+import { CountryService } from '../service/countries.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -8,14 +9,47 @@ import { CountryServiceMock } from '../service/country.service.mock';
 })
 export class HomeComponent implements OnInit {
   countries: Country[] = [];
+  orignalCountries: any[] = [];
+  countrtyCount: number = 0;
+  countrySubscription: Subscription | undefined;
+  isInfoPanelOpen: boolean = false;
 
-  constructor(private countryService: CountryServiceMock) {}
+  constructor(private countryService: CountryService) {}
 
   ngOnInit(): void {
-    this.countryService.getAllCountries().subscribe((data) => {
-      this.countries = data;
-    });
+    this.countrySubscription = this.countryService
+      .getAllCountries()
+      .subscribe((data) => {
+        this.countries = data;
+        this.orignalCountries = data;
+      });
+    this.countrtyCount = this.countries.length;
+    console.log(this.countrtyCount);
+  }
 
-    // console.log(this.countries);
+  handleSearch(searchTerm: string) {
+    console.log('Received search term:', searchTerm);
+    if (searchTerm.trim() === '') {
+      this.countries = [...this.orignalCountries];
+    } else {
+      this.countries = this.countries.filter((country) =>
+        country.name.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    }
+  }
+
+  handleTitleClick(titleClick: string) {
+    console.log('title click', titleClick);
+    this.isInfoPanelOpen = true;
+  }
+  
+  closeInfoPanel() {
+    this.isInfoPanelOpen = false;
+  }
+
+  ngOnDestroy(): void {
+    if (this.countrySubscription) {
+      this.countrySubscription.unsubscribe();
+    }
   }
 }
