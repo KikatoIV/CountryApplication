@@ -1,4 +1,5 @@
 ﻿using CountryApp.Dtos;
+using CountryApp.Interfaces;
 using CountryApp.Services;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
@@ -14,16 +15,29 @@ namespace CountryAppTests
 {
     public class CountryServiceTests
     {
-        private readonly Mock<IHttpClientFactory> _httpClientFactoryMock;
-        private readonly Mock<IMemoryCache> _memoryCacheMock;
-        private readonly Mock<ILogger<CountryService>> _loggerMock;
+        private readonly Mock<ICountryRepository> _repositoryMock;
         private readonly CountryService _countryService;
 
         public CountryServiceTests()
         {
-            _httpClientFactoryMock = new Mock<IHttpClientFactory>();
-            _memoryCacheMock = new Mock<IMemoryCache>();
-            _loggerMock = new Mock<ILogger<CountryService>>();
+            _repositoryMock = new Mock<ICountryRepository>();
+            _countryService = new CountryService(_repositoryMock.Object);
+        }
+
+        [Fact]
+        public async Task GetAllAsync_Should_Return_Countries()
+        {
+            // Arrange
+            var expectedCountries = MockData.GetMockCountries();
+
+            _repositoryMock.Setup(repo => repo.GetAllAsync()).ReturnsAsync(expectedCountries);
+
+            // Act
+            var result = await _countryService.GetAllAsync();
+
+            // Assert
+            Assert.NotNull(result);
+            Assert.Equal(expectedCountries, result);
         }
 
     }

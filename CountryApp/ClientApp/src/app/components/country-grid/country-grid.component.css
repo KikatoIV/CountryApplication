@@ -36,3 +36,7 @@ img {
 img:hover {
     transform: scale(1.05);
 }
+
+.mat-progress-spinner {
+  color: rgba(0, 0, 0, 0.8); /* Set the color of the spinner to a darker shade of black */
+}

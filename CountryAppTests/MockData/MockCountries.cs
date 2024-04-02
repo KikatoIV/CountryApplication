@@ -2,7 +2,7 @@
 
 public class MockData
 {
-    public static List<CountryDto> GetMockCountries()
+    public static IEnumerable<CountryDto> GetMockCountries()
     {
         var countries = new List<CountryDto>
         {

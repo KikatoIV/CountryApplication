@@ -16,9 +16,7 @@ namespace CountryApp.Services
 
         public async Task<IEnumerable<CountryDto>> GetAllAsync()
         {
-            var response = await _repository.GetAllAsync();
-
-            return response;
+            return await _repository.GetAllAsync(); ;
         }
     }
 }

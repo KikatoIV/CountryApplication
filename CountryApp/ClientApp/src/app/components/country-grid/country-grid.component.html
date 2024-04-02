@@ -1,7 +1,17 @@
-<div class="grid-container">
+<div *ngIf="loading">
+  <!-- Show loading spinner when loading is true -->
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<div  *ngIf="!loading">
+  <div class="grid-container">
     <mat-grid-list cols="3" rowHeight="330px">
-      <mat-grid-tile *ngFor="let country of countries" (click)="handleTileClick(country)">
-        <img [src]="country.flag">
+      <mat-grid-tile
+        *ngFor="let country of countries"
+        (click)="handleTileClick(country)"
+      >
+        <img [src]="country.flag" />
       </mat-grid-tile>
     </mat-grid-list>
+  </div>
 </div>

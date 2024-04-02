@@ -43,6 +43,7 @@ export class HomeComponent implements OnInit {
     this.selectedCountry = countryClick;
     this.isInfoPanelOpen = true;
   }
+  
   handlePanelClosed() {
     // Perform any actions needed when the info panel is closed
     this.isInfoPanelOpen = false;
