@@ -20,6 +20,6 @@ export class CountryService {
       this.apiUrl =  window.location.href;
     }
 
-    return this.http.get<Country[]>(`${this.apiUrl}/countries`);
+    return this.http.get<Country[]>(`${this.apiUrl}countries`);
   }
 }
