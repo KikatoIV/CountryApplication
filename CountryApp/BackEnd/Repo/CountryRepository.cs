@@ -52,16 +52,20 @@ namespace CountryApp.Repo
 
         private CountryDto MapToCountryDto(BaseCountry countryData)
         {
-            return new CountryDto
+            var countryDto = new CountryDto
             {
-                Name = countryData.name.common,
-                Capital = countryData.capital,
+                Name = countryData.name?.common ?? "none",
+                Capital = countryData.capital ?? new string[0], 
                 Population = countryData.population,
-                IsoCode = countryData.cca3,
-                flag = countryData.flags.png,
-                Languages = countryData.languages.Values.ToList(),
-                Currencies = countryData.currencies.SelectMany(pair => pair.Value.Where(innerPair => innerPair.Key == "name").Select(innerPair => innerPair.Value)).ToList()
+                IsoCode = countryData.cca3 ?? "none", 
+                flag = countryData.flags?.png ?? "none", 
+                Languages = countryData.languages?.Values.ToList() ?? new List<string>(), 
+                Currencies = countryData.currencies?.SelectMany(pair => pair.Value
+                    .Where(innerPair => !string.IsNullOrEmpty(innerPair.Value) && innerPair.Key == "name")
+                    .Select(innerPair => innerPair.Value)).ToList() ?? new List<string>()
             };
+
+            return countryDto;
         }
     }
 }
