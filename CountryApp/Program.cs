@@ -1,3 +1,5 @@
+using CountryApp.Interfaces;
+using CountryApp.Repo;
 using CountryApp.Services;
 using Microsoft.Extensions.Caching.Memory;
 
@@ -9,9 +11,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddMemoryCache();
 builder.Services.AddHttpClient();
 builder.Services.AddMvc();
-builder.Services.AddSingleton<CountryService>();
-//builder.Services.AddScoped<IHttpClientFactory>();
-//builder.Services.AddScoped<IMemoryCache>();
+builder.Services.AddTransient<ICountryService, CountryService>();
+builder.Services.AddScoped<ICountryRepository, CountryRepository>();
 var app = builder.Build();
 
 if (!app.Environment.IsDevelopment())

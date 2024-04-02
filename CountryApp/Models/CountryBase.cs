@@ -7,7 +7,7 @@ public class Name
     public string? common { get; set; }
 }
 
-public class Root
+public class BaseCountry
 {
     public Name? name { get; set; }
     public List<string>? tld { get; set; }

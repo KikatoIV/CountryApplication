@@ -24,7 +24,6 @@ namespace CountryAppTests
             _httpClientFactoryMock = new Mock<IHttpClientFactory>();
             _memoryCacheMock = new Mock<IMemoryCache>();
             _loggerMock = new Mock<ILogger<CountryService>>();
-            _countryService = new CountryService(_httpClientFactoryMock.Object, _memoryCacheMock.Object, _loggerMock.Object);
         }
 
     }
