@@ -1,29 +1,31 @@
-export const COUNTRIES_MOCK = [
+import { Country } from "src/Models/country.model";
+
+export const MOCK_COUNTRIES: Country[] = [
   {
-    name: 'Bangladesh',
-    cca3: 'BGD',
-    currencies: { BDT: { name: 'Bangladeshi taka', symbol: '৳' } },
-    capital: ['Dhaka'],
-    languages: { ben: 'Bengali' },
-    population: 164689383,
-    flag: 'https://flagcdn.com/w320/bd.png',
+    name: 'United States',
+    capital: ['Washington, D.C.'],
+    currencies: ['United States Dollar'],
+    population: 331449281,
+    isoCode: 'US',
+    languages: ['English'],
+    flag: 'https://restcountries.com/data/usa.svg'
   },
   {
-    name: 'Pakistan',
-    cca3: 'PAK',
-    currencies: { PKR: { name: 'Pakistani rupee', symbol: '₨' } },
-    capital: ['Islamabad'],
-    languages: { eng: 'English', urd: 'Urdu' },
-    population: 220892331,
-    flag: 'https://flagcdn.com/w320/pk.png',
+    name: 'United Kingdom',
+    capital: ['London'],
+    currencies: ['Pound Sterling '],
+    population: 67886011,
+    isoCode: 'GB',
+    languages: ['English'],
+    flag: 'https://restcountries.com/data/gbr.svg'
   },
   {
-    name:'India',
-    cca3: 'IND',
-    currencies: { INR: { name: 'Indian rupee', symbol: '₹' } },
-    capital: ['New Delhi'],
-    languages: { eng: 'English', hin: 'Hindi', tam: 'Tamil' },
-    population: 1380004385,
-    flag: 'https://flagcdn.com/w320/in.png'
-  },
+    name: 'Germany',
+    capital: ['Berlin'],
+    currencies: ['Euro'],
+    population: 83783942,
+    isoCode: 'DE',
+    languages: ['German'],
+    flag: 'https://restcountries.com/data/deu.svg'
+  }
 ];

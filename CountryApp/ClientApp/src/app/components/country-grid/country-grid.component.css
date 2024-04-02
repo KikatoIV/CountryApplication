@@ -9,7 +9,7 @@
 .mat-grid-tile img {
   width: 390px;
   height: 250px;
-  object-fit: contain; /* Ensure the image fills the tile without distortion */
+  object-fit: contain; 
 }
 
 .mat-grid-list {
@@ -20,8 +20,13 @@
 .grid-container {
   max-height: 700px;
   width: auto;
-   /* Set the maximum height of the container */
-  overflow-y: auto; /* Enable vertical scrollbar when content exceeds container height */
+  overflow-y: auto; 
+}
+
+.dark-theme {
+  background-color: #121212;
+  color: #ffffff;
+  transition: background-color 0.5s, color 0.5s;
 }
 
 img {
@@ -35,8 +40,4 @@ img {
 
 img:hover {
     transform: scale(1.05);
-}
-
-.mat-progress-spinner {
-  color: rgba(0, 0, 0, 0.8); /* Set the color of the spinner to a darker shade of black */
 }

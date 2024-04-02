@@ -4,10 +4,10 @@
     {
         public string? Name { get; set; }
         public string[]? Capital { get; set; }
-        public IEnumerable<string>? Currencies { get; set; }
+        public List<string>? Currencies { get; set; }
         public int Population { get; set; }
         public string? IsoCode { get; set; }
-        public IEnumerable<string>? Languages { get; set; }
+        public List<string>? Languages { get; set; }
         public string? flag { get; set; }
     }
 }

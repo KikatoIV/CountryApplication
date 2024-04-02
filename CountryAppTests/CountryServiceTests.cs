@@ -40,5 +40,19 @@ namespace CountryAppTests
             Assert.Equal(expectedCountries, result);
         }
 
+        [Fact]
+        public async Task GetAllAsync_Should_Return_Exception()
+        {
+            // Arrange
+            var expectedCountries = MockData.GetMockCountries();
+            var exceptionMessage = "False info";
+            var ex = new Exception(exceptionMessage);
+
+            _repositoryMock.Setup(repo => repo.GetAllAsync()).ThrowsAsync(ex);
+
+            // Act & Assert
+            await Assert.ThrowsAsync<Exception>(async () => await _countryService.GetAllAsync());
+        }
+
     }
 }

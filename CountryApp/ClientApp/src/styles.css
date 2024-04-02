@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.dark-theme {
+  background-color: #121212;
+  color: #ffffff;
+  transition: background-color 0.5s, color 0.5s;
+  height: 0px;
+}
+
+.dark-theme .wider-content {
+  background-color: #2e2d2d94;
+  color: #ffffff;
+  transition: background-color 0.5s, color 0.5s;
+}
 
 /* Provide sufficient contrast against white background */
 a {
@@ -14,6 +29,3 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

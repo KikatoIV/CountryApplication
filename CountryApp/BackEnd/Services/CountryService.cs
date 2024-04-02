@@ -14,7 +14,7 @@ namespace CountryApp.Services
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
         }
 
-        public async Task<IEnumerable<CountryDto>> GetAllAsync()
+        public async Task<List<CountryDto>> GetAllAsync()
         {
             return await _repository.GetAllAsync(); ;
         }

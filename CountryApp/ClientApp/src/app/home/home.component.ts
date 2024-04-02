@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Country } from '../../Models/country.model';
-import { CountryService } from '../service/countries.service';
+import { CountryService } from '../service/country-service/countries.service';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
 })
+
 export class HomeComponent implements OnInit {
   countries: Country[] = [];
   orignalCountries: any[] = [];
@@ -14,6 +16,7 @@ export class HomeComponent implements OnInit {
   countrySubscription: Subscription | undefined;
   isInfoPanelOpen: boolean = false;
   selectedCountry: Country | undefined;
+  darkModeEnabled: boolean = true;
 
   constructor(private countryService: CountryService) {}
 
@@ -24,8 +27,6 @@ export class HomeComponent implements OnInit {
         this.countries = data;
         this.orignalCountries = data;
       });
-    this.countrtyCount = this.countries.length;
-    console.log(this.countrtyCount);
   }
 
   handleSearch(searchTerm: string) {
@@ -45,7 +46,6 @@ export class HomeComponent implements OnInit {
   }
   
   handlePanelClosed() {
-    // Perform any actions needed when the info panel is closed
     this.isInfoPanelOpen = false;
   }
 
@@ -53,5 +53,10 @@ export class HomeComponent implements OnInit {
     if (this.countrySubscription) {
       this.countrySubscription.unsubscribe();
     }
+  }
+
+  toggleDarkMode(): void {
+    this.darkModeEnabled = !this.darkModeEnabled;
+    console.log("hello")
   }
 }

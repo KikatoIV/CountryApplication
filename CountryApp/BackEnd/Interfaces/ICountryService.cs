@@ -4,6 +4,6 @@ namespace CountryApp.Interfaces
 {
     public interface ICountryService
     {
-        Task<IEnumerable<CountryDto>> GetAllAsync();
+        Task<List<CountryDto>> GetAllAsync();
     }
 }

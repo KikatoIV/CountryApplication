@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
-import { CountryService } from './service/countries.service';
+import { CountryService } from './service/country-service/countries.service';
 import { CountryGridComponent } from 'src/app/components/country-grid/country-grid.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -15,6 +15,8 @@ import { SearchBarComponent } from './components/search-bar/search-bar.component
 import { InfoPanelComponent } from './components/info-panel/info-panel.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { ThemeToggleComponent } from './components/theme-toggle/theme-toggle.component';
+import { ThemeService } from './service/theme-service/theme.service';
 
 
 @NgModule({
@@ -24,6 +26,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     CountryGridComponent,
     SearchBarComponent,
     InfoPanelComponent,
+    ThemeToggleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,7 +43,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     ]),
     BrowserAnimationsModule
   ],
-  providers: [CountryService],
+  providers: [CountryService, ThemeService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

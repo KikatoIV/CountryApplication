@@ -20,7 +20,7 @@ namespace CountryApp.Repo
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
-        public async Task<IEnumerable<CountryDto>> GetAllAsync()
+        public async Task<List<CountryDto>> GetAllAsync()
         {
 
             if (!_memoryCache.TryGetValue(Cache.Key_All, out List<CountryDto> cachedCountries))
@@ -32,7 +32,7 @@ namespace CountryApp.Repo
                     var httpClient = _httpClientFactory.CreateClient();
                     var responseContent = await httpClient.GetStringAsync(RestCountries.BaseUrl + RestCountries.All_Endpoint);
 
-                    var countriesData = JsonSerializer.Deserialize<IEnumerable<BaseCountry>>(responseContent);
+                    var countriesData = JsonSerializer.Deserialize<List<BaseCountry>>(responseContent);
                     foreach (var countryData in countriesData)
                     {
                         var country = MapToCountryDto(countryData);
@@ -59,8 +59,8 @@ namespace CountryApp.Repo
                 Population = countryData.population,
                 IsoCode = countryData.cca3,
                 flag = countryData.flags.png,
-                Languages = countryData.languages.Values.ToArray(),
-                Currencies = countryData.currencies.SelectMany(pair => pair.Value.Where(innerPair => innerPair.Key == "name").Select(innerPair => innerPair.Value)).ToArray()
+                Languages = countryData.languages.Values.ToList(),
+                Currencies = countryData.currencies.SelectMany(pair => pair.Value.Where(innerPair => innerPair.Key == "name").Select(innerPair => innerPair.Value)).ToList()
             };
         }
     }

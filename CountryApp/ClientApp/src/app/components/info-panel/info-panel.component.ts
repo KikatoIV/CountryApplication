@@ -23,7 +23,7 @@ export class InfoPanelComponent {
   togglePanel() {
     this.isPanelVisible = !this.isPanelVisible;
     if (!this.isPanelVisible) {
-      this.panelClosed.emit(); // Emit event when panel is closed
+      this.panelClosed.emit();
     }
   }
 }

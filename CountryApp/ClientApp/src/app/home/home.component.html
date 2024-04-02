@@ -1,22 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Home Page</title>
-</head>
-<body class="wider-content">
-  <app-search-bar (searchEmitter)="handleSearch($event)"></app-search-bar>
-  <main>
-    <app-country-grid [countries]="countries" (clickEmitter)="handleCountryClick($event)"></app-country-grid>
-  </main>
-  
-  <div>
-    <app-info-panel [isPanelVisible]="isInfoPanelOpen" [countryInformation]="selectedCountry" (panelClosed)="handlePanelClosed()"></app-info-panel>
-  </div>
-  
-  <footer>
-    <p>© 2024 My Website. All rights reserved.</p>
-  </footer>
-</body>
-</html>
+
+    <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>My Home Page</title>
+    </head>
+    <body class="wider-content" >
+      <header>
+        <h1>Welcome to My Home Page</h1>
+        <app-theme-toggle></app-theme-toggle>
+      </header>
+
+      <app-search-bar (searchEmitter)="handleSearch($event)"></app-search-bar>
+      <main>
+        <app-country-grid
+          [countries]="countries"
+          (clickEmitter)="handleCountryClick($event)"
+        ></app-country-grid>
+      </main>
+      <div>
+        <app-info-panel
+          [isPanelVisible]="isInfoPanelOpen"
+          [countryInformation]="selectedCountry"
+          (panelClosed)="handlePanelClosed()"
+        ></app-info-panel>
+      </div>
+      <footer>
+        <p>© 2024 Ians/Ioannis's website. All rights reserved.</p>
+      </footer>
+    </body>
