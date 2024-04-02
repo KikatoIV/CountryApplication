@@ -11,7 +11,7 @@ import { Subscription } from 'rxjs';
 
 export class HomeComponent implements OnInit {
   countries: Country[] = [];
-  orignalCountries: any[] = [];
+  originalCountries: any[] = [];
   countrtyCount: number = 0;
   countrySubscription: Subscription | undefined;
   isInfoPanelOpen: boolean = false;
@@ -25,16 +25,16 @@ export class HomeComponent implements OnInit {
       .getAllCountries()
       .subscribe((data) => {
         this.countries = data;
-        this.orignalCountries = data;
+        this.originalCountries = data;
       });
   }
 
   handleSearch(searchTerm: string) {
     console.log('Received search term:', searchTerm);
     if (searchTerm.trim() === '') {
-      this.countries = [...this.orignalCountries];
+      this.countries = [...this.originalCountries];
     } else {
-      this.countries = this.countries.filter((country) =>
+      this.countries = this.originalCountries.filter((country) =>
         country.name.toLowerCase().includes(searchTerm.toLowerCase())
       );
     }
