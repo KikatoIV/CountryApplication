@@ -1,5 +1,29 @@
 # CountryApp
 
+---
+
+## Table of Contents
+
+- [Introduction]
+- [Features]
+- [How to Run]
+- [Improvements]
+- [Contact]
+
+---
+
+## Introduction
+This is a rather basic app, i was sure to implement the following based on your request, things such as night mode, basic unit testing on both the backend and frontend, clicking on flags give all the information that was requested aswell. Overall it was a fun little project, and enjoyed writing it, I think towards the end I may have missed a few things. But I did my best with the time I had.
+
+---
+
+## Architectural choices
+
+Originally I wanted the rest api to feed into a DB but there where only 250 items from the countries list, if there where more id push for a DB aswell as a search name endpoint but i decided that the front end is more than capable of handling the data that is there. Now the better way to handle the data would probably be paging with a search endpoint, but i did not have enough time to implement it. Dark mode was an intresting thing to implement, I think next time round I'll start with that. Animations I kept suttle with fading pop ups. But overall SPA are intresting things, I do wish I did abit more research on them. But overall I think its a an okay implementation.
+
+---
+
+## Features
 This is a Single page application, made with C# and angular. Mostly made with angular meterial has night mode,
 ![image](https://github.com/KikatoIV/CountryApplication/assets/39209669/04eaa678-3e27-4bd5-bda8-2a63c9600df3)
 
@@ -20,23 +44,7 @@ Small tests across the app
 
 ![image](https://github.com/KikatoIV/CountryApplication/assets/39209669/a0e21703-1832-4608-9d3f-44999d559109)
 
-
-
 ---
-
-## Table of Contents
-
-- [Introduction](#introduction)
-- [How to Run](#how-to-run)
-- [Contact](#contact)
-
----
-
-## Introduction
-This is a rather basic app, i was sure to implement the following based on your request, things such as night mode, basic unit testing on both the backend and frontend, clicking on flags give all the information that was requested aswell. Overall it was a fun little project, and enjoyed writing it, I think towards the end I may have missed a few things. But I did my best with the time I had.
-
----
-
 ## How to Run
 
 There are a few ways to get the project going.
@@ -57,6 +65,12 @@ cd CountryApp
 dot net build
 dot net run
 ```
+
+## Improvements
+- More tests, postman collection, a big blocker for me that i did not overcome was creating tests around in memory cache
+- More streamlined start up, publishing this project resulted in some unknowns and decided against it, odd things such as web permissions or web socket disconecting was more previlant and resulted in crashing
+- Mapper for the repository, Currently there is a method that maps from the rest countries api to the CountryDto, a mapper would have been a more clean implementation
+- Clean up, there may be some things that can be removed or are not currently used
 
 ## Contact details
 
