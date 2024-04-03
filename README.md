@@ -14,6 +14,12 @@ suttle fade in animations for pop ups
 
 ![image](https://github.com/KikatoIV/CountryApplication/assets/39209669/f59de762-ee6c-46da-a194-1756f0221879)
 
+Small tests across the app
+
+![image](https://github.com/KikatoIV/CountryApplication/assets/39209669/524fda77-2bd0-4085-9833-1f10eac3b99f)
+
+![image](https://github.com/KikatoIV/CountryApplication/assets/39209669/a0e21703-1832-4608-9d3f-44999d559109)
+
 
 
 ---
@@ -40,9 +46,13 @@ One is the goodold and somewhat trust worthy .bat file I only had the chance to 
 ![image](https://github.com/KikatoIV/CountryApplication/assets/39209669/5da3c8bc-a403-49ca-91f6-2843d8296337)
 
 Plan B is to load the project in visual studio press the start button
+![image](https://github.com/KikatoIV/CountryApplication/assets/39209669/909b084f-300d-451c-b333-3b66daa6f3fe)
+
 
 otherwise 
 ```Commandline
+cd ClientApp
+npm install
 cd CountryApp
 dot net build
 dot net run
