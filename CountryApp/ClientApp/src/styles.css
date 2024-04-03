@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .dark-theme {
   background-color: #121212;
@@ -9,11 +15,16 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   height: 0px;
 }
 
-.dark-theme .wider-content {
-  background-color: #2e2d2d94;
-  color: #ffffff;
-  transition: background-color 0.5s, color 0.5s;
-}
+  .dark-theme .wider-content {
+    background-color: #2e2d2d94;
+    color: #ffffff;
+    transition: background-color 0.5s, color 0.5s;
+  }
+
+  .dark-theme .info-panel-container {
+    background-color: #2e2d2d94;
+    color: #1f1e1e;
+  }
 
 /* Provide sufficient contrast against white background */
 a {
