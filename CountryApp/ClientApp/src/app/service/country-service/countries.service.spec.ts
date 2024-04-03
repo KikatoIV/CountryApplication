@@ -33,7 +33,7 @@ describe('CountryService', () => {
       expect(countries).toEqual(mockCountries);
     });
 
-    const req = httpTestingController.expectOne(`${environment.apiUrl}/countries`);
+    const req = httpTestingController.expectOne(`${environment.apiUrl}countries`);
     expect(req.request.method).toEqual('GET');
     req.flush(mockCountries);
   });
