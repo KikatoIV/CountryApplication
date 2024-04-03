@@ -5,6 +5,7 @@
 ## Table of Contents
 
 - [Introduction]
+- [Architectural choices]
 - [Features]
 - [How to Run]
 - [Improvements]
